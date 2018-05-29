@@ -7,6 +7,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import chalk
+import config
 
 Bot = commands.Bot(command_prefix='', case_insensitive=True)
 count = 0
@@ -35,4 +36,4 @@ async def on_message(message):
     if "hello" in msg:
         await Bot.send_message(message.channel, sayShutUp())
     
-Bot.run("NDUxMDM0ODI1OTQ4OTIxODU2.De8FTQ.V_YAZ1YYSvw4C1iBw5T8CHefRGc")
+Bot.run(config.BOT_TOKEN)
