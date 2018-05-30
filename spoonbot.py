@@ -1,5 +1,6 @@
 ######################
 #### SpoonBot 0.1 ####
+#### By ShantnuS #####
 ######################
 
 import discord
@@ -9,23 +10,37 @@ import asyncio
 import chalk
 import config
 
-Bot = commands.Bot(command_prefix='', case_insensitive=True)
-count = 0
+#######################################
+#   _____ _____   ____   ____  _   _  #
+#  / ____|  __ \ / __ \ / __ \| \ | | #
+# | (___ | |__) | |  | | |  | |  \| | #
+#  \___ \|  ___/| |  | | |  | | . ` | #
+#  ____) | |    | |__| | |__| | |\  | #
+# |_____/|_|     \____/ \____/|_| \_| #
+####################################### 
 
+#Ready the client
+Bot = commands.Bot(command_prefix='', case_insensitive=True)
+
+#Global variables
+no_count = 0
+
+#Ready event
 @Bot.event
 async def on_ready():
     print("I'm ready! My name: " + Bot.user.name + " and my ID: " + Bot.user.id)
 
+#Scenario specific responses 
 def sayShutUp():
     return "Shut Up"
 
 def sayYes():
-    global count
-    count += 1
-    if count == 3:
+    global no_count
+    no_count += 1
+    if no_count == 3:
         return "I hope I give you the shits"
-    elif count == 5:
-        count = 0
+    elif no_count == 5:
+        no_count = 0
         return "Well, come on, you beauties!"
     else:
         return "Yes"
@@ -36,7 +51,7 @@ def getHelpEmbed():
     embed.add_field(name="No", value="Yes", inline=False)
     return embed
     
-
+#On message event
 @Bot.event
 async def on_message(message):
     msg = message.content.lower()
@@ -49,4 +64,6 @@ async def on_message(message):
     if "!help" in msg:
         await Bot.send_message(message.author, embed=getHelpEmbed())
     
+#config.py contains a BOT_TOKEN variable that is the token from the discord developer website. 
+#This token is needed to run the bot. Replace with your own token to run your bot. 
 Bot.run(config.BOT_TOKEN)
