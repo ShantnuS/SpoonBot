@@ -32,6 +32,8 @@ def sayYes():
 
 def getHelpEmbed():
     embed = discord.Embed(title="Come and have a go, if you think you're hard enough!", description="HELP:", color=0x00ff00)
+    embed.add_field(name="Hello", value="Shut Up", inline=False)
+    embed.add_field(name="No", value="Yes", inline=False)
     return embed
     
 
